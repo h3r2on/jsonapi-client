@@ -52,6 +52,15 @@ if TYPE_CHECKING:
     from .relationships import ResourceTuple
     from .filter import Modifier
 
+import json
+from uuid import UUID
+
+class UUIDEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, UUID):
+            return str(obj)
+        return json.JSONEncoder.default(self, obj)
+
 logger = logging.getLogger(__name__)
 NOT_FOUND = object()
 
@@ -634,7 +643,7 @@ class Session:
         headers = {'Content-Type':'application/vnd.api+json'}
         headers.update(kwargs.pop('headers', {}))
 
-        response = requests.request(http_method, url, json=send_json,
+        response = requests.request(http_method, url, data=json.dumps(send_json, cls=UUIDEncoder),
                                     headers=headers,
                                     **kwargs)
         self._append_to_session_history(url, http_method, response, send_json)
@@ -676,7 +685,7 @@ class Session:
         headers = {'Content-Type':'application/vnd.api+json'}
         headers.update(kwargs.pop('headers', {}))
         async with self._aiohttp_session.request(
-                http_method, url, data=json.dumps(send_json),
+                http_method, url, data=json.dumps(send_json, cls=UUIDEncoder),
                 headers=headers,
                 **kwargs) as response:
 
