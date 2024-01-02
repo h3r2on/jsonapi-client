@@ -182,4 +182,5 @@ class AttributeProxy:
 class ResourceTuple(NamedTuple):
     id: str
     type: str
+    meta: {} = None
 

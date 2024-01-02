@@ -208,7 +208,7 @@ class AbstractRelationship(AbstractJsonObject):
     def _value_to_identifier(self, value: R_IDENT_TYPES, type_: str='') \
             -> 'Union[ResourceIdentifier, ResourceObject]':
         if isinstance(value, RESOURCE_TYPES):
-            r_ident = ResourceIdentifier(self.session, {'id': value.id, 'type': value.type})
+            r_ident = ResourceIdentifier(self.session, {'id': value.id, 'type': value.type, 'meta': value.meta})
         else:
             r_ident = ResourceIdentifier(self.session, {'id': value,
                                                      'type': type_ or self.type})

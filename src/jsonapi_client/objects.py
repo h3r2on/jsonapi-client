@@ -146,13 +146,14 @@ class ResourceIdentifier(AbstractJsonObject):
     def _handle_data(self, data):
         self.id:str = data.get('id')
         self.type:str = data.get('type')
+        self.meta = data.get('meta')
 
     @property
     def url(self):
         return f'{self.session.url_prefix}/{self.type}/{self.id}'
 
     def __str__(self):
-        return f'{self.type}: {self.id}'
+        return f'{self.type}: {self.id} ({self.meta})'
 
     def fetch_sync(self, cache_only=True) -> 'ResourceObject':
         return self.session.fetch_resource_by_resource_identifier(self, cache_only)
@@ -169,7 +170,15 @@ class ResourceIdentifier(AbstractJsonObject):
             return self.fetch_sync(cache_only)
 
     def as_resource_identifier_dict(self) -> dict:
-        return {'id': self.id, 'type': self.type} if self.id else None
+        if not self.id:
+            return None
+        res = {
+            'id': self.id,
+            'type': self.type,
+        }
+        if self.meta:
+            res['meta'] = self.meta
+        return res
 
     def __bool__(self):
         return self.id is not None
