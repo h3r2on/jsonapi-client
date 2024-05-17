@@ -138,3 +138,18 @@ class Sort(Modifier):
     def appended_query(self) -> str:
         sort_by = ','.join(self._sort_args)
         return f'sort={sort_by}'
+
+
+class SparseField(Modifier):
+    """
+    Implement sparse fields
+    """
+    def __init__(self, resource: str, *sparse_field_args: 'SparseFieldKeywords') -> None:
+        super().__init__()
+        self._resource = resource
+        self._sparse_field_args = sparse_field_args
+
+    def appended_query(self) -> str:
+        sparse_fields = ','.join(self._sparse_field_args)
+        resource = self._resource
+        return f'fields[{resource}]={sparse_fields}'
