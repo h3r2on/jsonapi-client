@@ -421,9 +421,6 @@ class ResourceObject(AbstractJsonObject):
             resource=self)
         self._attributes = AttributeDict(data=data.get('attributes', {}), resource=self)
 
-        if self.id:
-            self.validate()
-
     def create_map(self, name):
         """
         Create a map of values (AttributeDict) with name in attribute container.
@@ -571,6 +568,8 @@ class ResourceObject(AbstractJsonObject):
 
         If in async mode, this needs to be awaited.
         """
+        self.validate()
+
         if self.session.enable_async:
             return self._commit_async(custom_url, meta)
         else:
