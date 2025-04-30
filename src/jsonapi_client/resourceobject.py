@@ -568,7 +568,8 @@ class ResourceObject(AbstractJsonObject):
 
         If in async mode, this needs to be awaited.
         """
-        self.validate()
+        if not self._delete:
+            self.validate()
 
         if self.session.enable_async:
             return self._commit_async(custom_url, meta)
