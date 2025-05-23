@@ -422,35 +422,18 @@ class Session:
             url = filter.url_with_modifiers(url)
         return url
 
-    @staticmethod
-    def _resource_type_and_filter(
-                resource_id_or_filter: 'Union[Modifier, str]'=None)\
-            -> 'Tuple[Optional[str], Optional[Modifier]]':
-        from .filter import Modifier
-        if isinstance(resource_id_or_filter, Modifier):
-            resource_id = None
-            filter = resource_id_or_filter
-        else:
-            resource_id = resource_id_or_filter
-            filter = None
-        return resource_id, filter
-
     def _get_sync(self, resource_type: str,
-                  resource_id_or_filter: 'Union[Modifier, str]'=None) -> 'Document':
-        resource_id, filter_ = self._resource_type_and_filter(
-                                                                resource_id_or_filter)
-        url = self._url_for_resource(resource_type, resource_id, filter_)
+                  resource_id: str=None, filter: 'Modifier'=None) -> 'Document':
+        url = self._url_for_resource(resource_type, resource_id, filter)
         return self.fetch_document_by_url(url)
 
     async def _get_async(self, resource_type: str,
-                         resource_id_or_filter: 'Union[Modifier, str]'=None) -> 'Document':
-        resource_id, filter_ = self._resource_type_and_filter(
-                                                                resource_id_or_filter)
-        url = self._url_for_resource(resource_type, resource_id, filter_)
+                         resource_id: str=None, filter: 'Modifier'=None) -> 'Document':
+        url = self._url_for_resource(resource_type, resource_id, filter)
         return await self.fetch_document_by_url_async(url)
 
     def get(self, resource_type: str,
-                 resource_id_or_filter: 'Union[Modifier, str]'=None) \
+                 resource_id: str=None, filter: 'Modifier'=None) \
             -> 'Union[Awaitable[Document], Document]':
         """
         Request (GET) Document from server.
@@ -462,9 +445,9 @@ class Session:
         to be awaited.
         """
         if self.enable_async:
-            return self._get_async(resource_type, resource_id_or_filter)
+            return self._get_async(resource_type, resource_id, filter)
         else:
-            return self._get_sync(resource_type, resource_id_or_filter)
+            return self._get_sync(resource_type, resource_id, filter)
 
     def _iterate_sync(self, resource_type: str, filter: 'Modifier'=None) \
             -> 'Iterator[ResourceObject]':
