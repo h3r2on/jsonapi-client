@@ -111,7 +111,7 @@ Filtering and including
    modifier_sum = filter + include + modifier
 
    # Now fetch your document
-   filtered = s.get('resource_type', modifier_sum) # AsyncIO with await
+   filtered = s.get('resource_type', 'id_of_document', modifier_sum) # AsyncIO with await
 
    # To access resources included in document:
    r1 = document.resources[0]  # first ResourceObject of document.

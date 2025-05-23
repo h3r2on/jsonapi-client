@@ -414,7 +414,7 @@ class Session:
 
     def _url_for_resource(self, resource_type: str,
                           resource_id: str=None,
-                          filter: 'Modifier'=None) -> str:
+                          filter: 'Union[Modifier, str]'=None) -> str:
         url = f'{self.url_prefix}/{resource_type}'
         if resource_id is not None:
             url = f'{url}/{resource_id}'
@@ -423,7 +423,7 @@ class Session:
         return url
 
     def _get_sync(self, resource_type: str,
-                  resource_id: str=None, filter: 'Modifier'=None) -> 'Document':
+                  resource_id: str=None, filter: 'Union[Modifier, str]'=None) -> 'Document':
         url = self._url_for_resource(resource_type, resource_id, filter)
         return self.fetch_document_by_url(url)
 
@@ -433,7 +433,7 @@ class Session:
         return await self.fetch_document_by_url_async(url)
 
     def get(self, resource_type: str,
-                 resource_id: str=None, filter: 'Modifier'=None) \
+                 resource_id: str=None, filter: 'Union[Modifier, str]'=None) \
             -> 'Union[Awaitable[Document], Document]':
         """
         Request (GET) Document from server.
