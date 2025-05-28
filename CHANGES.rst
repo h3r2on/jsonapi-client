@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.9.10 (2025-05-23)
+------------------
+
+- support fliters and id_of_document on single resource requests
+
 
 0.9.9 (2020-03-12)
 ------------------
