@@ -376,6 +376,17 @@ With traditional pip (still supported)::
     pip install -e ".[test]"
     pytest tests/ --cov=src/jsonapi_client
 
+Development with All Dependencies
+----------------------------------
+
+To install all dependencies (test + docs)::
+
+    # With UV
+    uv sync --all-extras
+    
+    # Or with pip
+    pip install -e ".[all]"
+
 
 License
 =======
