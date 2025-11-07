@@ -34,19 +34,6 @@ Homepage = "https://github.com/h3r2on/jsonapi-client"
 Repository = "https://github.com/h3r2on/jsonapi-client"
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=8.0",
-    "pytest-asyncio>=0.23.0",
-    "pytest-mock>=3.12",
-    "pytest-aiohttp>=1.0",
-    "pytest-cov>=4.0",
-    "asynctest>=0.13.0",
-    "aiodns>=3.0",
-]
-docs = [
-    "sphinx>=7.0",
-    "sphinx-autodoc-annotation>=1.0",
-]
 test = [
     "pytest>=8.0",
     "pytest-asyncio>=0.23.0",
@@ -56,6 +43,13 @@ test = [
     "asynctest>=0.13.0",
     "aiodns>=3.0",
     "coveralls>=4.0",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-autodoc-annotation>=1.0",
+]
+dev = [
+    "jsonapi-client[test,docs]",
 ]
 
 [tool.hatch.build.targets.wheel]
