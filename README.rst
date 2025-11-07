@@ -33,13 +33,17 @@ JSON API ( http://jsonapi.org )
 Installation
 ============
 
-From Pypi::
+From PyPI::
 
     pip install jsonapi-client
 
+Or using uv (recommended)::
+
+    uv pip install jsonapi-client
+
 Or from sources::
 
-    ./setup.py install
+    uv pip install .
 
 
 Usage
