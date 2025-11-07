@@ -337,6 +337,46 @@ Credits
 - Author and package maintainer: Tuomas Airaksinen (https://github.com/tuomas2/).
 
 
+Development
+===========
+
+This project uses `UV <https://docs.astral.sh/uv/>`_ for package management and supports Python 3.9+.
+
+Quick Start
+-----------
+
+1. Install UV::
+
+    pip install uv
+
+2. Clone the repository::
+
+    git clone https://github.com/h3r2on/jsonapi-client.git
+    cd jsonapi-client
+
+3. Create a virtual environment and install dependencies::
+
+    uv venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    uv sync --all-extras
+
+4. Run tests::
+
+    uv run pytest tests/
+
+Running Tests
+-------------
+
+With UV::
+
+    uv run pytest tests/ --cov=src/jsonapi_client
+
+With traditional pip (still supported)::
+
+    pip install -e ".[test]"
+    pytest tests/ --cov=src/jsonapi_client
+
+
 License
 =======
 

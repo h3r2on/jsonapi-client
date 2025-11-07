@@ -1,13 +1,11 @@
-requests
-pytest-asyncio
-pytest-mock
-pytest
-pytest-aiohttp
-asynctest
-jsonschema
-aiohttp>=3.0
-aiodns
-sphinx
-sphinx-autodoc-annotation
-pytest-cov
-coveralls
+# DEPRECATED: This file is no longer used.
+# Project now uses pyproject.toml with UV for package management.
+#
+# For development, use:
+#   uv sync --all-extras
+#
+# Or with pip:
+#   pip install -e ".[test,dev,docs]"
+#
+# The dependencies are now defined in pyproject.toml under [project.dependencies]
+# and [project.optional-dependencies]
