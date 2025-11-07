@@ -14,3 +14,7 @@ dist
 .venv
 .vscode
 .pytest_cache
+
+# UV
+.python-version
+*.egg-info/

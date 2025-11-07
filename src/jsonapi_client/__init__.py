@@ -29,10 +29,13 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-import pkg_resources
+from importlib.metadata import version, PackageNotFoundError
 
 from .session import Session
 from .filter import Filter, Inclusion, Modifier, Sort, SparseField
 from .common import ResourceTuple
 
-__version__ = pkg_resources.get_distribution("jsonapi-client").version
+try:
+    __version__ = version("jsonapi-client")
+except PackageNotFoundError:
+    __version__ = "0.9.10"

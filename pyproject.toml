@@ -1,0 +1,97 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jsonapi-client"
+version = "0.9.10"
+description = "Comprehensive, yet easy-to-use, pythonic, ORM-like access to JSON API services"
+readme = "README.rst"
+license = {text = "BSD-3-Clause"}
+authors = [
+    {name = "Tuomas Airaksinen", email = "tuomas.airaksinen@qvantel.com"},
+]
+keywords = ["JSONAPI", "JSON API", "client"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "License :: OSI Approved :: BSD License",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "requests",
+    "jsonschema",
+    "aiohttp",
+]
+
+[project.urls]
+Homepage = "https://github.com/h3r2on/jsonapi-client"
+Repository = "https://github.com/h3r2on/jsonapi-client"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-mock>=3.12",
+    "pytest-aiohttp>=1.0",
+    "pytest-cov>=4.0",
+    "asynctest>=0.13.0",
+    "aiodns>=3.0",
+    "coveralls>=4.0",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-autodoc-annotation>=1.0",
+]
+# Development includes all test and documentation dependencies
+all = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-mock>=3.12",
+    "pytest-aiohttp>=1.0",
+    "pytest-cov>=4.0",
+    "asynctest>=0.13.0",
+    "aiodns>=3.0",
+    "coveralls>=4.0",
+    "sphinx>=7.0",
+    "sphinx-autodoc-annotation>=1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jsonapi_client"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/docs",
+    "README.rst",
+    "CHANGES.rst",
+    "LICENSE.txt",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--cov=src/jsonapi_client --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src/jsonapi_client"]
+omit = ["*/tests/*", "*/test_*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+]
