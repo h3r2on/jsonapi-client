@@ -20,7 +20,7 @@ JSON API client for Python
 Introduction
 ============
 
-Package repository: https://github.com/qvantel/jsonapi-client
+Original Package repository: https://github.com/qvantel/jsonapi-client
 
 This Python (3.6+) library provides easy-to-use, pythonic, ORM-like access to
 JSON API ( http://jsonapi.org )
