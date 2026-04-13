@@ -1,4 +1,4 @@
-FROM python:3.6.1-alpine
+FROM python:3.12-alpine
 MAINTAINER Tuomas Airaksinen <tuomas.airaksinen@qvantel.com>
 ENV PYTHONUNBUFFERED 1
 RUN apk update && apk upgrade && apk add --no-cache gcc python3-dev musl-dev make libffi-dev
